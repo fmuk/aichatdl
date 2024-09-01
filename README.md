@@ -12,7 +12,7 @@ AI Chat Downloader is a browser extension that allows users to download conversa
 ## Installation
 
 ### For Google Chrome:
-1. Download the extension files to your local machine.
+1. Download the extension files from the [GitHub repository](https://github.com/fmuk/aichatdl).
 2. Open Google Chrome and navigate to `chrome://extensions/`.
 3. Enable "Developer mode" by toggling the switch in the top right corner.
 4. Click on "Load unpacked" in the top left corner.
@@ -20,7 +20,7 @@ AI Chat Downloader is a browser extension that allows users to download conversa
 6. The extension should now appear in your list of installed extensions and in the Chrome toolbar.
 
 ### For Mozilla Firefox:
-1. Download the extension files to your local machine.
+1. Download the extension files from the [GitHub repository](https://github.com/fmuk/aichatdl).
 2. Open Mozilla Firefox and navigate to `about:debugging#/runtime/this-firefox`.
 3. Click on "Load Temporary Add-on" in the top right corner.
 4. Navigate to the folder containing the extension files and select the manifest.json file.
@@ -39,10 +39,13 @@ AI Chat Downloader prioritizes your privacy:
 - No data is sent to or stored on external servers.
 
 ## Reporting Issues
-If you encounter any bugs or issues, please report them to the author or on the extension's GitHub repository (if available).
+If you encounter any bugs or issues, please report them on the [GitHub Issues page](https://github.com/fmuk/aichatdl/issues) of the project repository.
+
+## Contributing
+Contributions to the AI Chat Downloader project are welcome! Please feel free to submit pull requests or suggest improvements through the GitHub repository.
 
 ## Future Updates
-While there are no guaranteed future features planned, updates may be released to address any bugs or compatibility issues that arise.
+While there are no guaranteed future features planned, updates may be released to address any bugs or compatibility issues that arise. Keep an eye on the GitHub repository for any announcements or new releases.
 
 ## License
 This project is licensed under the GNU General Public License v3.0 (GPLv3).

@@ -7,7 +7,8 @@ ZIP_NAME=${PROJECT_NAME}-${VERSION}
 
 mkdir -p $RELEASE_DIR releases
 cp -r src/ README.md LICENSE manifest.json $RELEASE_DIR/
-zip -r releases/${ZIP_NAME}.zip $RELEASE_DIR
+zip -r ${ZIP_NAME}.zip $RELEASE_DIR
 rm -rf $RELEASE_DIR
+mv -i ${ZIP_NAME}.zip releases
 echo "Release ${PROJECT_NAME}-${VERSION}.zip created successfully!"
 
