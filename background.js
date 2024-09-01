@@ -1,11 +1,13 @@
-const SUPPORTED_URLS = ['chat.openai.com', 'claude.ai', 'poe.com'];
+const SUPPORTED_URLS = ['chatgpt.com', 'claude.ai', 'poe.com'];
 
-chrome.action.onClicked.addListener((tab) => {
+const browserAPI = typeof chrome !== 'undefined' ? chrome : browser;
+
+browserAPI.action.onClicked.addListener((tab) => {
   if (SUPPORTED_URLS.some(url => tab.url.includes(url))) {
-    chrome.scripting.executeScript({
+    browserAPI.scripting.executeScript({
       target: { tabId: tab.id },
       function: extractConversation,
-    });
+    }).catch(error => console.error('Error executing script:', error));
   }
 });
 
