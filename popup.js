@@ -1,5 +1,7 @@
 let debugLog = [];
 
+const browserAPI = typeof chrome !== 'undefined' ? chrome : browser;
+
 const log = message => {
   debugLog.push(`${new Date().toISOString()}: ${message}`);
   updateDebugLogDisplay();
@@ -12,7 +14,7 @@ const updateDebugLogDisplay = () => {
 };
 
 const getCurrentSite = () => {
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+  browserAPI.tabs.query({active: true, currentWindow: true}, (tabs) => {
     if (tabs[0]) {
       const url = new URL(tabs[0].url);
       const siteMap = {
@@ -37,12 +39,12 @@ document.getElementById('extractBtn').addEventListener('click', () => {
   const format = document.querySelector('input[name="format"]:checked').value;
   log(`Selected format: ${format}`);
 
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+  browserAPI.tabs.query({active: true, currentWindow: true}, (tabs) => {
     log(`Current URL: ${tabs[0].url}`);
-    chrome.tabs.sendMessage(tabs[0].id, {action: "extract", format}, response => {
-      if (chrome.runtime.lastError) {
-        log(`Error: ${chrome.runtime.lastError.message}`);
-        if (chrome.runtime.lastError.message.includes("Cannot access contents of url")) {
+    browserAPI.tabs.sendMessage(tabs[0].id, {action: "extract", format}, response => {
+      if (browserAPI.runtime.lastError) {
+        log(`Error: ${browserAPI.runtime.lastError.message}`);
+        if (browserAPI.runtime.lastError.message.includes("Cannot access contents of url")) {
           log("Make sure you're on a chatgpt.com, claude.ai, or poe.com page.");
         }
       } else if (response) {

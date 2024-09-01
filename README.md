@@ -1,16 +1,17 @@
 # AI Chat Downloader
 
 ## Description
-AI Chat Downloader is a Chrome extension that allows users to download conversations from ChatGPT, Claude, and Poe. This extension is designed to work locally within your browser, ensuring your data remains private and secure.
+AI Chat Downloader is a browser extension that allows users to download conversations from ChatGPT, Claude, and Poe. This extension is designed to work locally within your browser, ensuring your data remains private and secure. It is compatible with both Google Chrome and Mozilla Firefox.
 
 ## Features
 - Download conversations from ChatGPT, Claude, and Poe
 - Multiple format options: Markdown, HTML, and Plaintext
 - Local processing: All data is handled within your browser
+- Cross-browser compatibility: Works with both Chrome and Firefox
 
 ## Installation
-To install the AI Chat Downloader Chrome extension:
 
+### For Google Chrome:
 1. Download the extension files to your local machine.
 2. Open Google Chrome and navigate to `chrome://extensions/`.
 3. Enable "Developer mode" by toggling the switch in the top right corner.
@@ -18,11 +19,18 @@ To install the AI Chat Downloader Chrome extension:
 5. Select the folder containing the extension files you downloaded.
 6. The extension should now appear in your list of installed extensions and in the Chrome toolbar.
 
+### For Mozilla Firefox:
+1. Download the extension files to your local machine.
+2. Open Mozilla Firefox and navigate to `about:debugging#/runtime/this-firefox`.
+3. Click on "Load Temporary Add-on" in the top right corner.
+4. Navigate to the folder containing the extension files and select the manifest.json file.
+5. The extension should now appear in your list of installed add-ons and in the Firefox toolbar.
+
 ## Usage
-1. Navigate to ChatGPT, Claude, or Poe in your Chrome browser.
+1. Navigate to ChatGPT, Claude, or Poe in your browser.
 2. Click on the AI Chat Downloader extension icon in the toolbar.
 3. Select your preferred format (Markdown, HTML, or Plaintext).
-4. Click "Download Conversation" to save the current chat.
+4. Click "Extract Conversation" to save the current chat.
 
 ## Privacy
 AI Chat Downloader prioritizes your privacy:

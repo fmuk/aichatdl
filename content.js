@@ -168,7 +168,9 @@ function simplifyHtml(html) {
     .trim();
 }
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+const browserAPI = typeof chrome !== 'undefined' ? chrome : browser;
+
+browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "extract") {
     sendResponse(extractConversation(request.format));
   } else if (request.action === "detectPlatform") {
