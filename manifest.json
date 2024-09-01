@@ -1,10 +1,16 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "AI Chat Downloader",
   "version": "1.3.1",
   "description": "Download conversations from ChatGPT, Claude, and Poe",
-  "permissions": ["activeTab", "scripting"],
-  "action": {
+  "permissions": [
+    "activeTab",
+    "https://chatgpt.com/*",
+    "https://claude.ai/*",
+    "https://poe.com/*",
+    "clipboardWrite"
+  ],
+  "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icon.png",
@@ -24,7 +30,8 @@
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"],
+    "persistent": false
   },
   "browser_specific_settings": {
     "gecko": {

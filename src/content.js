@@ -1,3 +1,5 @@
+const browserAPI = typeof chrome !== 'undefined' ? chrome : browser;
+
 const PLATFORMS = {
   CLAUDE: 'Claude',
   CHATGPT: 'ChatGPT',
@@ -167,8 +169,6 @@ function simplifyHtml(html) {
     .replace(/\s+/g, ' ')
     .trim();
 }
-
-const browserAPI = typeof chrome !== 'undefined' ? chrome : browser;
 
 browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "extract") {
