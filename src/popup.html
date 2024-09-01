@@ -5,96 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Chat Downloader</title>
     <style>
-        body {
-            font-family: Consolas, 'Courier New', Courier, monospace;
-            width: 300px;
-            padding: 20px;
-            background-color: #f0f4f8;
-            color: #2c3e50;
+        :root {
+            --primary-color: #27ae60;
+            --primary-hover: #2ecc71;
+            --secondary-color: #e74c3c;
+            --secondary-hover: #c0392b;
+            --background-color: #f0f4f8;
+            --text-color: #2c3e50;
+            --debug-bg: #ecf0f1;
+            --format-bg: #fff;
+            --format-border: #bdc3c7;
+            --format-active: #3498db;
+            --border-radius: 5px;
         }
+
+        body {
+            font-family: Consolas, 'Courier New', monospace;
+            width: 320px;
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
         h1 {
             font-size: 1.5em;
-            color: #2c3e50;
+            color: var(--text-color);
             margin-bottom: 20px;
             text-align: center;
             font-weight: bold;
         }
+
         .format-selection {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
+            background-color: var(--format-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .format-option {
-            display: flex;
-            align-items: center;
+            flex: 1;
+            text-align: center;
         }
+
         .format-option input[type="radio"] {
-            margin-right: 5px;
+            display: none;
         }
+
+        .format-option label {
+            display: block;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            border: 1px solid var(--format-border);
+        }
+
+        .format-option:first-child label {
+            border-top-left-radius: var(--border-radius);
+            border-bottom-left-radius: var(--border-radius);
+        }
+
+        .format-option:last-child label {
+            border-top-right-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+        }
+
+        .format-option input[type="radio"]:checked + label {
+            background-color: var(--format-active);
+            color: white;
+            font-weight: bold;
+        }
+
         .main-btn {
             display: block;
             width: 100%;
             padding: 12px;
             margin: 10px 0;
             border: none;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             cursor: pointer;
             font-size: 1em;
-            transition: background-color 0.3s;
-            font-family: Consolas, 'Courier New', Courier, monospace;
+            transition: background-color 0.3s, transform 0.1s;
+            font-family: inherit;
             font-weight: bold;
+            text-transform: uppercase;
         }
+
+        .main-btn:active {
+            transform: scale(0.98);
+        }
+
         #extractBtn {
-            background-color: #27ae60;
+            background-color: var(--primary-color);
             color: white;
-            border: 2px solid #27ae60;
         }
+
         #extractBtn:hover {
-            background-color: #2ecc71;
+            background-color: var(--primary-hover);
         }
+
         #copyDebugBtn {
-            background-color: #e74c3c;
+            background-color: var(--secondary-color);
             color: white;
-            border: 2px solid #e74c3c;
         }
+
         #copyDebugBtn:hover {
-            background-color: #c0392b;
+            background-color: var(--secondary-hover);
         }
+
         #debugLog {
             margin-top: 20px;
             padding: 10px;
-            background-color: #ecf0f1;
-            border-radius: 5px;
+            background-color: var(--debug-bg);
+            border-radius: var(--border-radius);
             font-size: 0.9em;
-            border: 2px solid #2c3e50;
+            border: 2px solid var(--text-color);
             max-height: 200px;
             overflow-y: auto;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #2c3e50;
+                --text-color: #ecf0f1;
+                --debug-bg: #34495e;
+                --format-bg: #34495e;
+                --format-border: #2c3e50;
+                --format-active: #2980b9;
+            }
         }
     </style>
 </head>
 <body>
     <h1>AI Chat Downloader</h1>
     
-    <div class="format-selection">
-        <label class="format-option">
-            <input type="radio" name="format" value="markdown" checked>
-            Markdown
-        </label>
-        <label class="format-option">
-            <input type="radio" name="format" value="html">
-            HTML
-        </label>
-        <label class="format-option">
-            <input type="radio" name="format" value="plaintext">
-            Plaintext
-        </label>
+    <div class="format-selection" role="group" aria-label="Select export format">
+        <div class="format-option">
+            <input type="radio" id="markdown" name="format" value="markdown" checked>
+            <label for="markdown">Markdown</label>
+        </div>
+        <div class="format-option">
+            <input type="radio" id="html" name="format" value="html">
+            <label for="html">HTML</label>
+        </div>
+        <div class="format-option">
+            <input type="radio" id="plaintext" name="format" value="plaintext">
+            <label for="plaintext">Plaintext</label>
+        </div>
     </div>
     
     <button id="extractBtn" class="main-btn">Extract Conversation</button>
     <button id="copyDebugBtn" class="main-btn">Copy Debug Log</button>
     
-    <div id="debugLog"></div>
-
+    <div id="debugLog" aria-live="polite"></div>
     <script src="popup.js"></script>
 </body>
 </html>
