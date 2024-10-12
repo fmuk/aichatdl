@@ -74,9 +74,13 @@ function extractConversationFromPlatform(platform, format) {
 function extractChatGPTConversation(format) {
   return Array.from(document.querySelectorAll('div.group\\/conversation-turn'))
     .map(turn => {
-      const speaker = turn.classList.contains('agent-turn') ? "AI" : "User";
-      const contentDiv = turn.querySelector('.min-h-\\[20px\\].text-message');
-      return contentDiv ? [speaker, extractContent(contentDiv, format)] : null;
+      const speaker = turn.querySelector('.agent-turn') ? "AI" : "User";
+      const contentDiv = turn.querySelector('.min-h-8.text-message, .min-h-\\[20px\\].text-message');
+      
+      if (contentDiv) {
+        return [speaker, extractContent(contentDiv, format)];
+      }
+      return null;
     })
     .filter(message => message && message[1].length > 1);
 }
